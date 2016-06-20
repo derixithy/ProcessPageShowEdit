@@ -1,0 +1,36 @@
+<?php
+
+class ProcessPageShowSettings extends ProcessPageEdit {
+	protected $pageTitle; 
+
+
+	public static function getModuleInfo() {
+		return array(
+			'title' => 'Settings Page Edit',
+			'summary' => 'Edit page with settings template, the user needs to have permissions to edit that page',
+			'version' => 100,
+			'icon' => 'dashboard',
+			'permission' => 'settings-edit', 
+			'permissions' => array(
+				'site-edit' => 'Administer site settings'
+			)
+			);
+	}
+	
+	public function __construct() {
+		$this->pageTitle = wire('page')->title;
+		parent::__construct();
+	}
+
+	public function init(){
+		$pageId = wire('pages')->get('template=settings,limit=1')->id;
+
+		$this->input->get->id = $pageId;
+		parent::init();
+	}
+
+	public function setupBreadcrumbs(){
+		$this->page->title = $this->pageTitle;
+	}
+
+}

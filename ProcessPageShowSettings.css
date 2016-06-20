@@ -1,0 +1,8 @@
+/* Hide view button */
+#content .WireTabs a#_ProcessPageEditView {
+	display: none !important;
+}
+/* Hide page indicater - AdminThemeReno */
+#PageIDIndicator {
+	display: none !important;
+}
